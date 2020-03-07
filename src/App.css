@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+:root {
+  --yellow-color: hsl(50, 77%, 56%);
+  --black-color: hsl(0,0%,10%);
+  --blue-color: hsl(217, 89%, 61%);
+}
+
+
+/*CSS Reset*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+/*CSS Reset*/
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+nav {
+  background-color:var(--black-color);
+  color: var(--yellow-color);
+  position: fixed;
+  width: 100%;
+  top:0;
+  left: 0;
+  height: 50px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  width: 100vw;
+}
+
+.categories {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.categories .card-container{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.categories .card-container a{
+  margin: 30px;
+  margin-bottom: 0px;
+  height: 200px;
+  width: 20%;
+  text-align: center;
+  border: 2px solid var(--yellow-color);
+  background-color: var(--black-color);
+  color: var(--yellow-color);
+  border-radius: 50px;
+  flex-wrap: wrap;
+  font-size: 1.25rem;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-in;
+  text-decoration: none;
+}
+
+.categories .card-container a:hover{
+  cursor: pointer;
+  transform: scale(1.015);
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--yellow-color);
+  height: 100%;
+}
+
+.loader span{
+  font-size: 3rem;
+}
+
+.loader p{
+  font-size: 1.5rem;
+}

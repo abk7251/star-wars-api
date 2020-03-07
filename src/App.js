@@ -1,12 +1,29 @@
 import React from 'react';
 import './App.css';
+import Starwars from './components/starwars';
+import Films from './components/films';
+import Navbar from './components/navbar';
+import { Switch, Route } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>app</h1>
-    </div>
+    <React.Fragment>
+      <Route component={Navbar} />
+      <main>
+        <Switch>
+          <Route exact path='/' component={Starwars} />
+          <Route path='/films' component={Films} />
+          <Route path='/people' component={Films} />
+          <Route path='/planets' component={Films} />
+          <Route path='/species' component={Films} />
+          <Route path='/starships' component={Films} />
+          <Route path='/vehicles' component={Films} />
+        </Switch>
+      </main>
+    </React.Fragment>
   );
 }
 
 export default App;
+
