@@ -2,8 +2,11 @@
 
 :root {
   --yellow-color: hsl(50, 77%, 56%);
+  --yellow-color-light: hsl(50, 77%, 95%);
   --black-color: hsl(0,0%,10%);
   --blue-color: hsl(217, 89%, 61%);
+  --red-color: hsl(4, 82%, 50%);
+  --red-color-light: hsl(4, 82%, 85%);
 }
 
 
@@ -25,7 +28,7 @@ body {
 nav {
   background-color:var(--black-color);
   color: var(--yellow-color);
-  position: fixed;
+  position: absolute;
   width: 100%;
   top:0;
   left: 0;
@@ -38,23 +41,21 @@ nav {
 main{
   margin-top: 50px;
   height: calc(100vh - 50px);
-  width: 100vw;
 }
 
-.categories {
+.main-container {
   width: 80%;
   margin: 0 auto;
-  height: 100%;
 }
 
-.categories .card-container{
+.main-container .card-container{
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.categories .card-container a{
+.main-container .card-container a{
   margin: 30px;
   margin-bottom: 0px;
   height: 200px;
@@ -73,9 +74,9 @@ main{
   text-decoration: none;
 }
 
-.categories .card-container a:hover{
+.main-container .card-container a:hover{
   cursor: pointer;
-  transform: scale(1.015);
+  transform: scale(1.02);
 }
 
 .loader {
@@ -84,7 +85,8 @@ main{
   justify-content: center;
   align-items: center;
   color: var(--yellow-color);
-  height: 100%;
+  position: relative;
+  top: 150px;
 }
 
 .loader span{
@@ -94,3 +96,73 @@ main{
 .loader p{
   font-size: 1.5rem;
 }
+
+.error-container {
+  background-color: var(--red-color-light);
+  color: var(--red-color);
+  text-align: center;
+  padding: 8px;
+}
+
+table{
+  margin: 0 auto;
+  position: relative;
+  top: 50px;
+}
+
+table tr th {
+  background-color:var(--black-color);
+  color: var(--yellow-color);
+  white-space: nowrap;
+}
+
+table,thead,th,td  {
+  border: 1px solid var(--yellow-color);
+  border-collapse: collapse;
+}
+
+thead th {
+  padding: 0.50rem 0.75rem;
+  text-align: left;  
+}
+
+tbody td {
+  padding: 0.50rem 0.75rem;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+  background-color: var(--yellow-color-light); 
+}
+
+.film-container{
+  width: 60%;
+  margin: 0 auto;
+  padding: 24px 32px;
+  border: 2px solid var(--yellow-color);
+  border-radius: 25px;
+  color: var(--yellow-color);
+  background-color: var(--black-color);
+  position: relative;
+  top: 50px;
+}
+.film-container section:not(:last-of-type){
+  margin-bottom: 16px;
+}
+
+.film-container section label{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.film-container section ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-position: inside;
+}
+.film-container section ul li {
+  margin: 4px 16px
+}
+
+

@@ -3,6 +3,7 @@ import './App.css';
 import Starwars from './components/starwars';
 import Films from './components/films';
 import Navbar from './components/navbar';
+import FilmDetail from './components/filmdetail';
 import { Switch, Route } from 'react-router-dom'
 
 
@@ -13,6 +14,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path='/' component={Starwars} />
+          <Route exact path='/films/:id' component={FilmDetail} />
           <Route path='/films' component={Films} />
           <Route path='/people' component={Films} />
           <Route path='/planets' component={Films} />

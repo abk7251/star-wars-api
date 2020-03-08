@@ -1,4 +1,6 @@
 import React from 'react';
+import Loader from './common/loader';
+import Error from './common/error';
 import {
     Switch,
     Route,
@@ -9,12 +11,13 @@ class Starwars extends React.Component {
     state = {
         categories: {},
         loading: true,
+        error: null,
     }
 
     async componentDidMount() {
         const url = process.env.REACT_APP_BASE_URL;
         try {
-            const response = await fetch(`${url}/`);
+            const response = await fetch(url);
             const json = await response.json();
             const categories = Object.keys(json).sort().reduce((acc, el) => {
                 acc[el] = json[el];
@@ -22,34 +25,42 @@ class Starwars extends React.Component {
             }, {});
             this.setState({
                 categories,
+                error: null,
                 loading: false
             })
         } catch (err) {
-            console.error(err)
+            this.setState({
+                error: err.message,
+                loading: false
+            })
         }
     }
 
     render() {
 
-        const { categories, loading } = this.state;
+        const { categories, loading, error } = this.state;
+
 
         return (
-            <div className='categories'>
+            <React.Fragment>
                 {
-                    !loading ? (
-                        <div className ='card-container'>
-                            {
-                                Object.keys(categories).map(category => <Link to={`/${category}`}>{category}</Link>)
-                            }
-                        </div>
-                    ) : (
-                            <div className='loader'>
-                                <span><i className="fa fa-circle-o-notch fa-spin"></i></span>
-                                <p>Loading</p>
+                    !loading && error !== null && <Error error={error} />
+                }
+                <div className='main-container'>
+                    {
+                        !loading && error === null && (
+                            <div className='card-container'>
+                                {
+                                    Object.keys(categories).map(category => <Link to={`/${category}`}>{category}</Link>)
+                                }
                             </div>
                         )
-                }
-            </div>
+                    }
+                    {
+                        loading && <Loader />
+                    }
+                </div>
+            </React.Fragment>
         )
     }
 }
