@@ -2,7 +2,9 @@ import React from 'react';
 
 function Table(props) {
 
-    const { heading, body } = props;
+    const { heading, body, handleSort } = props;
+
+    const handleSortClick = el => handleSort(el)
 
     return (
         <table>
@@ -10,7 +12,11 @@ function Table(props) {
                 {
                     <tr>
                         {
-                            heading.map(el => <th>{el}</th>)
+                            heading.map(el =>
+                                <th>
+                                    <span onClick={() => handleSortClick(el)}>{el}<i className="fa fas fa-sort"></i></span>
+                                </th>
+                            )
                         }
                     </tr>
                 }

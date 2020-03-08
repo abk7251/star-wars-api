@@ -3,6 +3,7 @@
 :root {
   --yellow-color: hsl(50, 77%, 56%);
   --yellow-color-light: hsl(50, 77%, 95%);
+  --white-color: hsl(0, 0%, 100%);
   --black-color: hsl(0,0%,10%);
   --blue-color: hsl(217, 89%, 61%);
   --red-color: hsl(4, 82%, 50%);
@@ -39,8 +40,8 @@ nav {
 }
 
 main{
-  margin-top: 50px;
-  height: calc(100vh - 50px);
+  margin-top: 75px;
+  height: calc(100vh - 75px);
 }
 
 .main-container {
@@ -102,18 +103,24 @@ main{
   color: var(--red-color);
   text-align: center;
   padding: 8px;
+  position: relative;
+  top: -25px;
 }
 
 table{
   margin: 0 auto;
-  position: relative;
-  top: 50px;
 }
 
 table tr th {
   background-color:var(--black-color);
   color: var(--yellow-color);
-  white-space: nowrap;
+}
+
+table tr th span{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 table,thead,th,td  {
@@ -161,8 +168,52 @@ tbody tr:hover {
   flex-wrap: wrap;
   list-style-position: inside;
 }
+
 .film-container section ul li {
   margin: 4px 16px
 }
 
+.pagination ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  color: var(--black-color);
+  margin: 16px 0px;
+}
 
+.pagination ul li button {
+  margin: 8px;
+  border-radius: 5px;
+  background-color: var(--white-color);
+  padding: 3px 8px;
+  cursor: pointer;
+  border: none;
+  border: 1px solid;
+}
+
+.pagination ul li button.active,
+.pagination ul li button:not(:disabled):hover{
+  background-color: var(--yellow-color);
+}
+
+.search-bar{
+  margin-bottom: 24px; 
+  margin-left: 11.5%;   
+}
+
+.search-bar input{  
+  border: 2px solid var(--yellow-color);
+  padding: 0.50rem;
+  padding-left: 1.5rem;
+  padding-right: 2.5rem;
+  width: 18%;
+  min-width: 200px;
+  transition: width 0.4s ease-in-out;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
+.search-bar input:focus{  
+  width: 40%;
+  outline: none;
+}
