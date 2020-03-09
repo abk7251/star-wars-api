@@ -20,6 +20,9 @@ class Starwars extends React.Component {
             const response = await fetch(url);
             const json = await response.json();
             const categories = Object.keys(json).sort().reduce((acc, el) => {
+                if(['species', 'starships', 'vehicles'].includes(el)){
+                    return acc;
+                }
                 acc[el] = json[el];
                 return acc;
             }, {});

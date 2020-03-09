@@ -6,11 +6,11 @@ import Table from './pagecontrols/table';
 import debounce from '../utils/debounce';
 import { sortUp, sortDown } from '../utils/sort';
 
-class People extends React.Component {
+class Planets extends React.Component {
     state = {
         loading: true,
         error: null,
-        people: [],
+        planets: [],
         total: 0,
         current: 1,
         search: '',
@@ -43,18 +43,18 @@ class People extends React.Component {
     }
 
     handleSort = el => {
-        const { sortState, people } = this.state;
+        const { sortState, planets } = this.state;
         let newSortState;
         let data;
         if (sortState === 'down') {
-            data = sortUp(el, people);
+            data = sortUp(el, planets);
             newSortState = 'up';
         } else {
-            data = sortDown(el, people);
+            data = sortDown(el, planets);
             newSortState = 'down';
         }
         this.setState({
-            people: data,
+            planets: data,
             sortState: newSortState
         })
     }
@@ -63,23 +63,23 @@ class People extends React.Component {
         const url = process.env.REACT_APP_BASE_URL;
         const testValue = value => value === "unknown" || value === "n/a" || value === "none" ? undefined : value;
         try {
-            const response = await fetch(`${url}people?page=${pageNo}&search=${search}`)
+            const response = await fetch(`${url}planets?page=${pageNo}&search=${search}`)
             const json = await response.json();
             const total = json.count;
-            const people = json.results.map(el => {
+            const planets = json.results.map(el => {
                 return {
-                    name: testValue(el.name),
-                    height: testValue(el.height),
-                    mass: testValue(el.mass),
-                    hair_color: testValue(el.hair_color),
-                    skin_color: testValue(el.skin_color),
-                    eye_color: testValue(el.eye_color),
-                    birth_year: testValue(el.birth_year) !== undefined ? parseInt(testValue(el.birth_year)) : undefined,
-                    gender: testValue(el.gender)
+                    Name: testValue(el.name),
+                    Climate: testValue(el.climate),
+                    Diameter: testValue(el.diameter),
+                    'Orbital period': testValue(el.orbital_period),
+                    Population: testValue(el.population),
+                    'Rotation Period': testValue(el.rotation_period),
+                    'Surface water': testValue(el.surface_water),
+                    Terrain: testValue(el.terrain)
                 }
             })
             this.setState({
-                people,
+                planets,
                 total,
                 current: pageNo,
                 loading: false,
@@ -95,7 +95,7 @@ class People extends React.Component {
 
     render() {
 
-        const { loading, error, people, current, total } = this.state;
+        const { loading, error, planets, current, total } = this.state;
 
         return (
             <React.Fragment>
@@ -124,10 +124,10 @@ class People extends React.Component {
                                 !loading && error === null ? (
                                     <React.Fragment>
                                         {
-                                            people.length > 0 ? (
+                                            planets.length > 0 ? (
                                                 <Table
-                                                    heading={Object.keys(people[0])}
-                                                    body={people}
+                                                    heading={Object.keys(planets[0])}
+                                                    body={planets}
                                                     handleSort={this.handleSort}
                                                 />
                                             ) : <h1 style={{ textAlign: 'center' }}>
@@ -138,7 +138,7 @@ class People extends React.Component {
                                 ) : loading && <Loader />
                             }
                             {
-                                !loading && error === null && people.length > 0 && (
+                                !loading && error === null && planets.length > 0 && (
                                     <div className='pagination'>
                                         <Pagination
                                             current={current}
@@ -156,4 +156,4 @@ class People extends React.Component {
     }
 }
 
-export default People;
+export default Planets;

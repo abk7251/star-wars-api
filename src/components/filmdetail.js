@@ -22,6 +22,7 @@ class FilmDetail extends React.Component {
                 .catch(err => null)
             const response = await fetch(`${url}films/${id}`);
             const film = await response.json();
+            const title = `Episode ${film.episode_id}: ${film.title}`;
             const {
                 characters = [],
                 planets = [],
@@ -52,6 +53,7 @@ class FilmDetail extends React.Component {
             this.setState({
                 loading: false,
                 error: null,
+                title,
                 characters: charactersList,
                 planets: planetsList,
                 starships: starshipsList,
@@ -71,6 +73,7 @@ class FilmDetail extends React.Component {
         const {
             loading,
             error,
+            title,
         } = this.state;
 
         const elements = ['Characters', 'Planets', 'Starships', 'Vehicles', 'Species']
@@ -82,7 +85,8 @@ class FilmDetail extends React.Component {
                 }
                 {
                     !loading && error === null && (
-                        <div className='film-container'>
+                        <div className='film-detail-container'>
+                            <header>{title}</header>
                             {
                                 elements.map(el => {
                                     if (this.state[el.toLowerCase()].length > 0) {
